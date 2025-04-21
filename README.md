@@ -1,110 +1,71 @@
-# Recognizing-Handwritten-Alphabets
+# Alphabet Image Classification
 
-Handwritten Alphabet Classification Using Machine Learning
+This project classifies handwritten alphabet images into their corresponding labels using machine learning models. The dataset contains images of letters that are processed, resized, and used for training different models. The objective is to compare the performance of multiple classifiers and determine the best model for this task.
 
-This project demonstrates a machine learning pipeline for classifying handwritten English alphabets (A–Z) based on image data. The goal was to evaluate multiple classification algorithms and identify the most effective model for this task.
+## Table of Contents
 
-Overview:
+1. [Setup](#setup)
+2. [Data Preprocessing](#data-preprocessing)
+3. [Feature Extraction](#feature-extraction)
+4. [Model Training & Evaluation](#model-training--evaluation)
+5. [Results](#results)
+6. [Conclusion](#conclusion)
 
-The dataset used contains over 370,000 grayscale images of handwritten letters, organized into folders corresponding to each character. The project includes:
+---
 
-• Data loading and preprocessing
+## Setup
 
-• Image resizing and flattening
+In this project, several Python libraries are used, including `PIL`, `numpy`, `pandas`, and `sklearn`. Additionally, Google Drive is mounted to save and load datasets.
 
-• Creation of a labeled DataFrame
+---
 
-• Training multiple classification algorithms
+## Data Preprocessing
 
-• Evaluating performance using accuracy
+The dataset is located in a folder named `/content/sample_data/New folder`. The images are organized in subfolders representing different letters. These images are loaded into the program, and their labels are extracted from the filenames.
 
-Dataset and Preprocessing:
+---
 
-• Source: Images were accessed from Google Drive via Colab.
+## Feature Extraction
 
-• Total Images: 372,451
+### Image Resizing
 
-• Original Image Size: 28x28 pixels
+The images are resized to 15x15 pixels using the `thumbnail()` method. This reduces the size of the input features for easier processing.
 
-• Resized Image Size: 15x15 pixels (to reduce dimensionality and speed up processing)
+### Flattening the Images
 
-Preprocessing Steps:
+Each image is flattened into a one-dimensional array, which is then used as input for machine learning models. The resulting data is stored in a pandas DataFrame with a column for labels.
 
-1. Loaded and resized all images to 15x15 using Pillow's thumbnail() method.
+### Saving the DataFrame
 
-2. Flattened each image into a 1D array.
+The DataFrame containing the image data and labels is saved as a CSV file for further use in training and testing machine learning models.
 
-3. Created a labeled Pandas DataFrame from the flattened arrays.
+---
 
-4. Saved the final dataset to CSV (letters.csv).
+## Model Training & Evaluation
 
-Exploratory Data Analysis:
+The dataset is split into training and test sets. Several machine learning classifiers are then trained using the training set, and their performance is evaluated using the test set.
 
-• Visualized the distribution of letter labels using count plots.
+---
 
-• Randomly selected images were displayed to verify correctness after resizing.
+## Results
 
-• Checked for label imbalance, revealing that some letters (e.g., 'O', 'S', 'U') were overrepresented, while others (e.g., 'I', 'F') were underrepresented.
+The classifiers are evaluated based on accuracy, with the following results:
 
-## Model Training and Evaluation:
+| Algorithm                 | Classification  | Accuracy  |
+|---------------------------|-----------------|-----------|
+| LogisticRegression         | Logit           | 0.356288  |
+| DT Classifier              | Decision-Tree   | 0.927873  |
+| Random Forest Classifier   | Ensemble        | 0.977017  |
+| AdaBoost-Boosting Classifier | Boosting        | 0.537530  |
+| Bagging Classifier         | Bagging         | 0.954249  |
 
-### Features and Labels
+---
 
-• X: Pixel values (15x15 = 225 features per image)
+## Conclusion
 
-• y: Corresponding letter labels (A–Z)
+- **Random Forest Classifier** achieved the highest accuracy (97%), outperforming all other models.
+- **Bagging Classifier** followed closely with an accuracy of 95%.
+- **Decision Tree Classifier** showed a solid performance with an accuracy of 92%.
+- **AdaBoost Classifier** and **Logistic Regression** performed significantly worse.
 
-### Train-Test Split
-
-• 75% training data
-
-• 25% testing data
-
-Classifiers Used and Their Accuracy
-
-Algorithm	Type	Accuracy
-• Logistic Regression	Linear Model	35.6%
-• Decision Tree Classifier	Tree-Based	92.8%
-• Random Forest Classifier	Ensemble	97.7%
-• AdaBoost Classifier	Boosting	53.8%
-• Bagging Classifier	Ensemble (Bagging)	95.4%
-
-Insights and Observations:
-
-• Random Forest Classifier outperformed all other models with an accuracy of 97.7%, making it the most suitable choice for this task.
-
-• Bagging Classifier also showed strong performance, achieving over 95% accuracy.
-
-• Decision Tree Classifier performed well but slightly under the ensemble models.
-
-• Logistic Regression and AdaBoost struggled with this high-dimensional, multi-class classification problem, likely due to the complexity of the image features.
-
-Conclusion:
-
-The project demonstrates that ensemble learning methods, especially Random Forests, are highly effective in handling high-dimensional image classification tasks. While simple models like Logistic Regression fall short, more sophisticated approaches significantly improve performance.
-
-Future Improvements:
-
-• Experiment with Convolutional Neural Networks (CNNs) for more nuanced feature extraction.
-
-• Apply data normalization or pixel intensity scaling.
-
-• Use data augmentation to balance class distribution.
-
-• Perform hyperparameter tuning for all models to optimize performance.
-
-Dependencies:
-
-This project was developed in Google Colab and requires the following libraries:
-
-• numpy
-
-• pandas
-
-• seaborn
-
-• matplotlib
-
-• scikit-learn
-
-• pillow (PIL)
+These results suggest that **Random Forest** is the most effective model for this particular classification task. Further evaluation and validation are needed to confirm this conclusion.
