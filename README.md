@@ -1,96 +1,110 @@
 # Recognizing-Handwritten-Alphabets
+
 Handwritten Alphabet Classification Using Machine Learning
+
 This project demonstrates a machine learning pipeline for classifying handwritten English alphabets (A–Z) based on image data. The goal was to evaluate multiple classification algorithms and identify the most effective model for this task.
 
-Overview
+Overview:
+
 The dataset used contains over 370,000 grayscale images of handwritten letters, organized into folders corresponding to each character. The project includes:
 
-Data loading and preprocessing
+• Data loading and preprocessing
 
-Image resizing and flattening
+• Image resizing and flattening
 
-Creation of a labeled DataFrame
+• Creation of a labeled DataFrame
 
-Training multiple classification algorithms
+• Training multiple classification algorithms
 
-Evaluating performance using accuracy
+• Evaluating performance using accuracy
 
-Dataset and Preprocessing
-Source: Images were accessed from Google Drive via Colab.
+Dataset and Preprocessing:
 
-Total Images: 372,451
+• Source: Images were accessed from Google Drive via Colab.
 
-Original Image Size: 28x28 pixels
+• Total Images: 372,451
 
-Resized Image Size: 15x15 pixels (to reduce dimensionality and speed up processing)
+• Original Image Size: 28x28 pixels
+
+• Resized Image Size: 15x15 pixels (to reduce dimensionality and speed up processing)
 
 Preprocessing Steps:
-Loaded and resized all images to 15x15 using Pillow's thumbnail() method.
 
-Flattened each image into a 1D array.
+1. Loaded and resized all images to 15x15 using Pillow's thumbnail() method.
 
-Created a labeled Pandas DataFrame from the flattened arrays.
+2. Flattened each image into a 1D array.
 
-Saved the final dataset to CSV (letters.csv).
+3. Created a labeled Pandas DataFrame from the flattened arrays.
 
-Exploratory Data Analysis
-Visualized the distribution of letter labels using count plots.
+4. Saved the final dataset to CSV (letters.csv).
 
-Randomly selected images were displayed to verify correctness after resizing.
+Exploratory Data Analysis:
 
-Checked for label imbalance, revealing that some letters (e.g., 'O', 'S', 'U') were overrepresented, while others (e.g., 'I', 'F') were underrepresented.
+• Visualized the distribution of letter labels using count plots.
 
-Model Training and Evaluation
-Features and Labels
-X: Pixel values (15x15 = 225 features per image)
+• Randomly selected images were displayed to verify correctness after resizing.
 
-y: Corresponding letter labels (A–Z)
+• Checked for label imbalance, revealing that some letters (e.g., 'O', 'S', 'U') were overrepresented, while others (e.g., 'I', 'F') were underrepresented.
 
-Train-Test Split
-75% training data
+## Model Training and Evaluation:
 
-25% testing data
+### Features and Labels
+
+• X: Pixel values (15x15 = 225 features per image)
+
+• y: Corresponding letter labels (A–Z)
+
+### Train-Test Split
+
+• 75% training data
+
+• 25% testing data
 
 Classifiers Used and Their Accuracy
 
 Algorithm	Type	Accuracy
-Logistic Regression	Linear Model	35.6%
-Decision Tree Classifier	Tree-Based	92.8%
-Random Forest Classifier	Ensemble	97.7%
-AdaBoost Classifier	Boosting	53.8%
-Bagging Classifier	Ensemble (Bagging)	95.4%
-Insights and Observations
-Random Forest Classifier outperformed all other models with an accuracy of 97.7%, making it the most suitable choice for this task.
+• Logistic Regression	Linear Model	35.6%
+• Decision Tree Classifier	Tree-Based	92.8%
+• Random Forest Classifier	Ensemble	97.7%
+• AdaBoost Classifier	Boosting	53.8%
+• Bagging Classifier	Ensemble (Bagging)	95.4%
 
-Bagging Classifier also showed strong performance, achieving over 95% accuracy.
+Insights and Observations:
 
-Decision Tree Classifier performed well but slightly under the ensemble models.
+• Random Forest Classifier outperformed all other models with an accuracy of 97.7%, making it the most suitable choice for this task.
 
-Logistic Regression and AdaBoost struggled with this high-dimensional, multi-class classification problem, likely due to the complexity of the image features.
+• Bagging Classifier also showed strong performance, achieving over 95% accuracy.
 
-Conclusion
+• Decision Tree Classifier performed well but slightly under the ensemble models.
+
+• Logistic Regression and AdaBoost struggled with this high-dimensional, multi-class classification problem, likely due to the complexity of the image features.
+
+Conclusion:
+
 The project demonstrates that ensemble learning methods, especially Random Forests, are highly effective in handling high-dimensional image classification tasks. While simple models like Logistic Regression fall short, more sophisticated approaches significantly improve performance.
 
-Future Improvements
-Experiment with Convolutional Neural Networks (CNNs) for more nuanced feature extraction.
+Future Improvements:
 
-Apply data normalization or pixel intensity scaling.
+• Experiment with Convolutional Neural Networks (CNNs) for more nuanced feature extraction.
 
-Use data augmentation to balance class distribution.
+• Apply data normalization or pixel intensity scaling.
 
-Perform hyperparameter tuning for all models to optimize performance.
+• Use data augmentation to balance class distribution.
 
-Dependencies
+• Perform hyperparameter tuning for all models to optimize performance.
+
+Dependencies:
+
 This project was developed in Google Colab and requires the following libraries:
 
-numpy
+• numpy
 
-pandas
+• pandas
 
-seaborn
+• seaborn
 
-matplotlib
+• matplotlib
 
-scikit-learn
+• scikit-learn
 
-pillow (PIL)
+• pillow (PIL)
